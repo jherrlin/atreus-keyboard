@@ -272,7 +272,11 @@
     [
       {"code": 73, "label": {"base": {"full": "Insert", "1u": "Ins"}}},
       {"code": 74, "label": {"base": "Home"}},
-      {"code": 82, "label": {"base": {"full": "Up Arrow", "1u": "↑"}}},
+      {
+        "code": 20481,
+        "label": {"hint": "Mouse", "base": "Up"},
+        "categories": ["mousekeys"]
+      },
       {"code": 77, "label": {"base": "End"}},
       {"code": 75, "label": {"base": {"full": "Page Up", "1u": "PgUp"}}},
       {
@@ -291,9 +295,21 @@
       {"code": 66, "label": {"base": "F9"}},
       {"code": 67, "label": {"base": "F10"}},
       {"code": 76, "label": {"base": {"full": "Delete", "1u": "Del"}}},
-      {"code": 80, "label": {"base": {"full": "Left Arrow", "1u": "←"}}},
-      {"code": 81, "label": {"base": {"full": "Down Arrow", "1u": "↓"}}},
-      {"code": 79, "label": {"base": {"full": "Right Arrow", "1u": "→"}}},
+      {
+        "code": 20484,
+        "label": {"hint": "Mouse", "base": "Left"},
+        "categories": ["mousekeys"]
+      },
+      {
+        "code": 20482,
+        "label": {"hint": "Mouse", "base": "Down"},
+        "categories": ["mousekeys"]
+      },
+      {
+        "code": 20488,
+        "label": {"hint": "Mouse", "base": "Right"},
+        "categories": ["mousekeys"]
+      },
       {"code": 78, "label": {"base": {"full": "Page Down", "1u": "PgDn"}}},
       {
         "code": 0,
@@ -326,14 +342,20 @@
         "categories": ["consumer"]
       },
       {
-        "code": 0,
-        "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
-        "categories": ["blanks"]
+        "code": 20545,
+        "label": {
+          "hint": {"full": "Mouse Button", "1u": "M.Btn"},
+          "base": "Left"
+        },
+        "categories": ["mousekeys"]
       },
       {
-        "code": 0,
-        "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
-        "categories": ["blanks"]
+        "code": 20546,
+        "label": {
+          "hint": {"full": "Mouse Button", "1u": "M.Btn"},
+          "base": "Right"
+        },
+        "categories": ["mousekeys"]
       },
       {
         "code": 65535,
