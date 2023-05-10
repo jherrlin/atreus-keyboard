@@ -53,7 +53,13 @@
       {"code": 54, "label": {"base": ",", "shifted": "<"}},
       {"code": 55, "label": {"base": ".", "shifted": ">"}},
       {"code": 56, "label": {"base": "/", "shifted": "?"}},
-      {"code": 41, "label": {"base": "Esc"}},
+      {
+        "code": 17452,
+        "label": {"hint": "ShiftTo", "base": "#2"},
+        "target": 2,
+        "rangeStart": 17450,
+        "categories": ["layer", "shifttolayer"]
+      },
       {"code": 43, "label": {"base": "Tab"}},
       {
         "code": 227,
