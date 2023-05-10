@@ -40,7 +40,10 @@
 
 enum {
   MACRO_QWERTY,
-  MACRO_VERSION_INFO
+  MACRO_VERSION_INFO,
+  SWEDISH1,            // #2
+  SWEDISH2,            // #3
+  SWEDISH3             // #4  
 };
 
 #define Key_Exclamation LSHIFT(Key_1)
@@ -173,9 +176,82 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // GeminiPR,
 );
 
+// Macron for changing to layout and pressing a key.
+// Use to write Swedish ÅÄÖ
+
+// å
+const macro_t *swedish1(KeyEvent &event) {
+  return MACRO(
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10),
+    Tr(Key_LeftBracket), // <-
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    I(10),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10)
+    );
+}
+
+// ä
+const macro_t *swedish2(KeyEvent &event) {
+  return MACRO(
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10),
+    Tr(Key_Quote), // <-
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    I(10),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10)
+    );
+}
+
+// ö
+const macro_t *swedish3(KeyEvent &event) {
+  return MACRO(
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10),
+    Tr(Key_Semicolon), // <-
+    Dr(Key_LeftControl),
+    Dr(Key_LeftAlt),
+    Tr(Key_Space),
+    I(10),
+    Ur(Key_LeftControl),
+    Ur(Key_LeftAlt),
+    I(10)
+    );
+}
+
+
 const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
   if (keyToggledOn(event.state)) {
     switch (macro_id) {
+      case SWEDISH1:
+        return swedish1(event);
+        break;
+      case SWEDISH2:
+        return swedish2(event);
+        break;
+      case SWEDISH3:
+        return swedish3(event);
+        break;      
     case MACRO_QWERTY:
       // This macro is currently unused, but is kept around for compatibility
       // reasons. We used to use it in place of `MoveToLayer(QWERTY)`, but no
