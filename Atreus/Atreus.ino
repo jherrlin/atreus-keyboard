@@ -30,10 +30,11 @@
 #include "Kaleidoscope-Macros.h"
 #include "Kaleidoscope-MouseKeys.h"
 #include "Kaleidoscope-OneShot.h"
-#include "Kaleidoscope-Qukeys.h"
+// #include "Kaleidoscope-Qukeys.h"
 #include "Kaleidoscope-SpaceCadet.h"
 #include "Kaleidoscope-DynamicMacros.h"
 #include "Kaleidoscope-LayerNames.h"
+#include <Kaleidoscope-Chord.h>
 
 #define MO(n) ShiftToLayer(n)
 #define TG(n) LockLayer(n)
@@ -141,7 +142,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // The Qukeys plugin enables the "Secondary action" functionality in
   // Chrysalis. Keys with secondary actions will have their primary action
   // performed when tapped, but the secondary action when held.
-  Qukeys,
+  // Qukeys,
 
   // SpaceCadet can turn your shifts into parens on tap, while keeping them as
   // Shifts when held. SpaceCadetConfig lets Chrysalis configure some aspects of
@@ -164,7 +165,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
 
   // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
   MouseKeys,
-  MouseKeysConfig  //,
+  MouseKeysConfig,
 
   // The MagicCombo plugin lets you use key combinations to trigger custom
   // actions - a bit like Macros, but triggered by pressing multiple keys at the
@@ -174,6 +175,9 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // Enables the GeminiPR Stenography protocol. Unused by default, but with the
   // plugin enabled, it becomes configurable - and then usable - via Chrysalis.
   // GeminiPR,
+
+  // https://kaleidoscope.readthedocs.io/en/latest/examples/Keystrokes/Chord/Chord.ino.html
+  Chord
 );
 
 // Macron for changing to layout and pressing a key.
@@ -271,6 +275,11 @@ const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
 }
 
 void setup() {
+
+  CHORDS(
+    CHORD(Key_LeftControl, Key_G), Key_Escape,
+  )
+
   Kaleidoscope.setup();
   EEPROMKeymap.setup(9);
 
