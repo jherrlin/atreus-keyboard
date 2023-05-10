@@ -40,23 +40,18 @@
 
 enum {
   MACRO_QWERTY,
-  MACRO_VERSION_INFO,
-  SWEDISH1,
-  SWEDISH2,
-  SWEDISH3
+  MACRO_VERSION_INFO
 };
 
-
-
 #define Key_Exclamation LSHIFT(Key_1)
-#define Key_At LSHIFT(Key_2)
-#define Key_Hash LSHIFT(Key_3)
-#define Key_Dollar LSHIFT(Key_4)
-#define Key_Percent LSHIFT(Key_5)
-#define Key_Caret LSHIFT(Key_6)
-#define Key_And LSHIFT(Key_7)
-#define Key_Star LSHIFT(Key_8)
-#define Key_Plus LSHIFT(Key_Equals)
+#define Key_At          LSHIFT(Key_2)
+#define Key_Hash        LSHIFT(Key_3)
+#define Key_Dollar      LSHIFT(Key_4)
+#define Key_Percent     LSHIFT(Key_5)
+#define Key_Caret       LSHIFT(Key_6)
+#define Key_And         LSHIFT(Key_7)
+#define Key_Star        LSHIFT(Key_8)
+#define Key_Plus        LSHIFT(Key_Equals)
 
 enum {
   QWERTY,
@@ -86,9 +81,9 @@ KEYMAPS(
       ,Key_LeftBracket ,Key_RightBracket ,Key_Hash      ,Key_LeftCurlyBracket ,Key_RightCurlyBracket ,Key_Caret
       ,TG(UPPER)       ,Key_Insert       ,Key_LeftGui   ,Key_LeftShift        ,Key_Delete         ,Key_LeftControl
 
-                   ,Key_PageUp   ,Key_7 ,Key_8      ,Key_9 ,M(SWEDISH1)
-                   ,Key_Plus     ,Key_4 ,Key_5      ,Key_6 ,M(SWEDISH2)
-      ,Key_And     ,Key_Star     ,Key_1 ,Key_2      ,Key_3 ,M(SWEDISH3)
+                   ,Key_PageUp   ,Key_7 ,Key_8      ,Key_9 ,Key_Backspace
+                   ,Key_PageDown ,Key_4 ,Key_5      ,Key_6 ,___
+      ,Key_And     ,Key_Star     ,Key_1 ,Key_2      ,Key_3 ,Key_Plus
       ,Key_LeftAlt ,Key_Space    ,___   ,Key_Period ,Key_0 ,Key_Equals
    ),
 
@@ -178,94 +173,22 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // GeminiPR,
 );
 
-// Macron for changing to layout and pressing a key.
-// Use to write Swedish ÅÄÖ
-
-// å
-const macro_t *swedish1(KeyEvent &event) {
-  return MACRO(
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10),
-    Tr(Key_LeftBracket), // <-
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    I(10),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10)
-    );
-}
-
-// ä
-const macro_t *swedish2(KeyEvent &event) {
-  return MACRO(
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10),
-    Tr(Key_Quote), // <-
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    I(10),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10)
-    );
-}
-
-// ö
-const macro_t *swedish3(KeyEvent &event) {
-  return MACRO(
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10),
-    Tr(Key_Semicolon), // <-
-    Dr(Key_LeftControl),
-    Dr(Key_LeftAlt),
-    Tr(Key_Space),
-    I(10),
-    Ur(Key_LeftControl),
-    Ur(Key_LeftAlt),
-    I(10)
-    );
-}
-
 const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
   if (keyToggledOn(event.state)) {
     switch (macro_id) {
-      case SWEDISH1:
-        return swedish1(event);
-        break;
-      case SWEDISH2:
-        return swedish2(event);
-        break;
-      case SWEDISH3:
-        return swedish3(event);
-        break;
-      case MACRO_QWERTY:
-        // This macro is currently unused, but is kept around for compatibility
-        // reasons. We used to use it in place of `MoveToLayer(QWERTY)`, but no
-        // longer do. We keep it so that if someone still has the old layout with
-        // the macro in EEPROM, it will keep working after a firmware update.
-        Layer.move(QWERTY);
-        break;
-      case MACRO_VERSION_INFO:
-        Macros.type(PSTR("Keyboardio Atreus - Kaleidoscope "));
-        Macros.type(PSTR(BUILD_INFORMATION));
-        break;
-      default:
-        break;
+    case MACRO_QWERTY:
+      // This macro is currently unused, but is kept around for compatibility
+      // reasons. We used to use it in place of `MoveToLayer(QWERTY)`, but no
+      // longer do. We keep it so that if someone still has the old layout with
+      // the macro in EEPROM, it will keep working after a firmware update.
+      Layer.move(QWERTY);
+      break;
+    case MACRO_VERSION_INFO:
+      Macros.type(PSTR("Keyboardio Atreus - Kaleidoscope "));
+      Macros.type(PSTR(BUILD_INFORMATION));
+      break;
+    default:
+      break;
     }
   }
   return MACRO_NONE;
