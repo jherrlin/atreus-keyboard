@@ -277,7 +277,7 @@ const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
 void setup() {
 
   CHORDS(
-    CHORD(Key_LeftControl, Key_G), Key_Escape,
+    CHORD(Key_LeftControl, Key_G), Key_Escape
   )
 
   Kaleidoscope.setup();
