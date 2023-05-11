@@ -44,7 +44,7 @@ enum {
   MACRO_VERSION_INFO,
   SWEDISH1,            // #2
   SWEDISH2,            // #3
-  SWEDISH3             // #4  
+  SWEDISH3             // #4
 };
 
 #define Key_Exclamation LSHIFT(Key_1)
@@ -255,7 +255,7 @@ const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
         break;
       case SWEDISH3:
         return swedish3(event);
-        break;      
+        break;
     case MACRO_QWERTY:
       // This macro is currently unused, but is kept around for compatibility
       // reasons. We used to use it in place of `MoveToLayer(QWERTY)`, but no
@@ -277,7 +277,8 @@ const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
 void setup() {
 
   CHORDS(
-    CHORD(Key_LeftControl, Key_G), Key_Escape
+    CHORD(Key_LeftControl, Key_G), Key_Escape,
+    CHORD(Key_LeftControl, Key_M), Key_Enter
   )
 
   Kaleidoscope.setup();
