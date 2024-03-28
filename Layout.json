@@ -402,9 +402,10 @@
         "categories": ["blanks"]
       },
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 24581,
+        "label": {"hint": "Macro", "base": "#5"},
+        "rangeStart": 24576,
+        "categories": ["macros"]
       },
       {
         "code": 65535,

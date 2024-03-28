@@ -44,7 +44,8 @@ enum {
   MACRO_VERSION_INFO,
   SWEDISH1,            // #2
   SWEDISH2,            // #3
-  SWEDISH3             // #4
+  SWEDISH3,            // #4
+  EMACS1               // #5
 };
 
 #define Key_Exclamation LSHIFT(Key_1)
@@ -243,6 +244,22 @@ const macro_t *swedish3(KeyEvent &event) {
     );
 }
 
+// Emacs macro
+// C - c f l
+const macro_t *emacs1(KeyEvent &event) {
+  return MACRO(
+    Dr(Key_LeftControl),
+    Dr(Key_C),
+    I(10),
+    Ur(Key_LeftControl),
+    Ur(Key_C),
+    I(10),
+    Tr(Key_F),
+    I(10),
+    Tr(Key_L)
+    );
+}
+
 
 const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
   if (keyToggledOn(event.state)) {
@@ -255,6 +272,9 @@ const macro_t *macroAction(uint8_t macro_id, KeyEvent &event) {
         break;
       case SWEDISH3:
         return swedish3(event);
+        break;
+      case EMACS1:
+        return emacs1(event);
         break;
     case MACRO_QWERTY:
       // This macro is currently unused, but is kept around for compatibility
